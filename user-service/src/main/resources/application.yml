@@ -1,0 +1,49 @@
+spring:
+    profiles:  default
+    application:
+        name: User Service
+
+server:
+    port: 9100
+
+eureka:
+    instance:
+        appname: User Service
+    client:
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://halab-cloud.com:9000/eureka/
+
+---
+spring:
+    profiles:  vn
+    application:
+        name: User Service
+
+server:
+    port: 9101
+
+eureka:
+    instance:
+        appname: User Service
+    client:
+        fetchRegistry: true
+        serviceUrl:
+        defaultZone: http://halab-cloud-vn.com:9001/eureka/
+
+---
+spring:
+    profiles:  us
+    application:
+        name: User Service
+
+server:
+    port: 9102
+
+eureka:
+    instance:
+        appname: User Service
+    client:
+        fetchRegistry: true
+        serviceUrl:
+        defaultZone: http://halab-cloud-us.com:9002/eureka/

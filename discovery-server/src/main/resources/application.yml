@@ -1,0 +1,50 @@
+spring:
+    profiles:  default
+    application:
+        name: Discovery Server
+
+server:
+    port: 9000
+
+eureka:
+    instance:
+        hostname: halab-cloud.com
+    client:
+        registerWithEureka: false
+        fetchRegistry: false
+        serviceUrl:
+            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+---
+spring:
+    profiles: vn
+    application:
+        name: Discovery Server
+
+server:
+    port: 9001
+eureka:
+    instance:
+        hostname: halab-cloud-vn.com
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://halab-cloud-us.com:9002/eureka/       # ==> Other nodes
+
+---
+spring:
+    profiles: us
+    application:
+        name: Discovery Server
+
+server:
+    port: 9002
+eureka:
+    instance:
+        hostname: halab-cloud-us.com
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://halab-cloud-vn.com:9001/eureka/       # ==> Other nodes
